@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const { exec } = require('child_process');
-const path = require('path');
+const os = require('os');
 
 function createWindow() {
     const win = new BrowserWindow({
@@ -29,10 +29,20 @@ app.on('activate', () => {
     }
 });
 
-ipcMain.on('verify-input', (event, input) => {
-    const verifierPath = path.join(__dirname, '../verificador.exe');
-    const command = `powershell.exe -Command "echo ${input} | ${verifierPath}"`;
-    exec(command, (error, stdout, stderr) => {
+ipcMain.on('verify-input', (event, { type, input }) => {
+    let command;
+    const isWindows = os.platform() === 'win32';
+    const sanitizedInput = input.replace(/"/g, '\\"'); // Escapar comillas dobles
+
+    if (type === 'username') {
+        command = `echo ${sanitizedInput} | ${isWindows ? '.\\verificador_username.exe' : './verificador_username'}`;
+    } else if (type === 'email') {
+        command = `echo ${sanitizedInput} | ${isWindows ? '.\\verificador_email.exe' : './verificador_email'}`;
+    } else if (type === 'password') {
+        command = `echo ${sanitizedInput} | ${isWindows ? '.\\verificador_password.exe' : './verificador_password'}`;
+    }
+
+    exec(command, { shell: isWindows ? 'cmd.exe' : '/bin/bash' }, (error, stdout, stderr) => {
         if (error) {
             console.error(`Error: ${error.message}`);
             return;
@@ -41,7 +51,6 @@ ipcMain.on('verify-input', (event, input) => {
             console.error(`stderr: ${stderr}`);
             return;
         }
-        event.reply('verification-result', stdout);
+        event.reply('verification-result', stdout.trim()); // Trim para eliminar posibles nuevas líneas
     });
 });
-
