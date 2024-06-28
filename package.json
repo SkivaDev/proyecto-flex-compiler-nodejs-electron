@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "src/main.js",
   "scripts": {
-     "start": "electron ."
+     "start": "electron .",
+     "build:username": "flex verificador_username.l && gcc verificador.c lex.yy.c -o verificador_username.exe -lfl",
+     "build:email": "flex verificador_email.l && gcc verificador.c lex.yy.c -o verificador_email.exe -lfl",
+     "build:password": "flex verificador_password.l && gcc verificador.c lex.yy.c -o verificador_password.exe -lfl"
   },
   "keywords": [],
   "author": "",

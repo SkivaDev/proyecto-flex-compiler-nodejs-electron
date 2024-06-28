@@ -11,6 +11,10 @@ void check_email(const char *text) {
     printf("Correo electrónico válido: %s\n", text);
 }
 
+void check_no_valid_email(const char *text) {
+    printf("Correo electrónico no válido :(: %s\n", text);
+}
+
 void check_password(const char *text) {
     int has_upper = 0, has_lower = 0, has_digit = 0, has_special = 0;
     for (int i = 0; i < strlen(text); i++) {

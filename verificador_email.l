@@ -7,9 +7,10 @@ void check_email(const char *text);
 
 %%
 \"                      {/* Ignorar comillas dobles */}
-\n                      {/* Ignorar nueva línea */}
+\n                      {/* Ignorar nueva linea */}
+" "                     {/* Ignorar los espacios vacios */}
 [a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}  { check_email(yytext); }
-.                                               { printf("Correo electrónico no válido: %s\n", yytext); }
+.                                               { check_no_valid_email(yytext); }
 %%
 
 int yywrap() {
