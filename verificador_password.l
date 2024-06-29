@@ -1,3 +1,4 @@
+/* SECCION DE DEFINICIONES */
 %{
 #include <stdio.h>
 #include <string.h>
@@ -5,11 +6,23 @@
 void check_password(const char *text);
 %}
 
+/* SECCION DE TOKENS */
+
+COMILLA_DOBLE           [\"]
+NUEVA_LINEA             [\n]
+ESPACIO_BLANCO          [" "]
+OCHO_A_MAS_CARACTERES   .{8,}
+
+
+/* SECCION DE REGLAS */
 %%
-\"      {/* Ignorar comillas dobles */}
-\n      {/* Ignorar nueva línea */}
-.{8,}  { check_password(yytext); }
-.      { printf("Contraseña no válida: %s\n", yytext); }
+{COMILLA_DOBLE}          {/* Ignorar comillas dobles */}
+{NUEVA_LINEA}            {/* Ignorar nueva línea */}
+{ESPACIO_BLANCO}         {/* Ignorar los espacios vacios */}
+
+
+{OCHO_A_MAS_CARACTERES}  { check_password(yytext); }
+.                        { printf("Contraseña no valida: %s\n", yytext); }
 %%
 
 int yywrap() {

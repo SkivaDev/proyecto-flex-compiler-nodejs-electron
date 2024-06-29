@@ -4,7 +4,7 @@
 #include "verificador.h"
 
 void check_username(const char *text) {
-    printf("Nombre de usuario válido: %s\n", text);
+    printf("Nombre de usuario valido: %s\n", text);
 }
 
 void check_email(const char *text) {
