@@ -23,7 +23,10 @@ USER_NAME               [a-zA-Z_][a-zA-Z0-9_]{2,}
 {ESPACIO_BLANCO}                 {/* Ignorar los espacios vacios */}
 
 {USER_NAME}                      { check_username(yytext); }
-.                                { printf("Nombre de usuario no valido: %s\n", yytext); }
+^[^\n]*$                         { printf("Nombre de usuario no valido: %s\n", yytext); }
+.                                {/* Ignorar el resto de coincidencias*/}
+
+
 %%
 
 int yywrap() {

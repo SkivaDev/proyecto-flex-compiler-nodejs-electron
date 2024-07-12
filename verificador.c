@@ -12,7 +12,7 @@ void check_email(const char *text) {
 }
 
 void check_no_valid_email(const char *text) {
-    printf("Correo electrónico no válido :(: %s\n", text);
+    printf("Correo electrónico no válido : %s\n", text);
 }
 
 void check_password(const char *text) {

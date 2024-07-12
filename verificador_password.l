@@ -22,7 +22,10 @@ OCHO_A_MAS_CARACTERES   .{8,}
 
 
 {OCHO_A_MAS_CARACTERES}  { check_password(yytext); }
-.                        { printf("Contraseña no valida: %s\n", yytext); }
+^[^\n]*$                 { printf("Contraseña no valida: %s\n", yytext); }
+.                        {/* Ignorar el resto de coincidencias*/}
+
+
 %%
 
 int yywrap() {
