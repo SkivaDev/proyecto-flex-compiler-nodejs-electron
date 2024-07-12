@@ -20,7 +20,9 @@ CORREO_ELECTRONICO      [a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}
 
 
 {CORREO_ELECTRONICO}                  { check_email(yytext); }
-.                                     { check_no_valid_email(yytext); }
+^[^\n]*$                              { check_no_valid_email(yytext); }
+.                                     {/* Ignorar los espacios vacios */}
+
 %%
 
 int yywrap() {
