@@ -13,7 +13,7 @@ COMILLA_DOBLE           [\"]
 NUEVA_LINEA             [\n]
 ESPACIO_BLANCO          [" "]
 
-USER_NAME               [a-zA-Z_][a-zA-Z0-9_]{2,}
+USER_NAME               ^[a-zA-Z_][a-zA-Z0-9_]{2,}$
 
 
 /* SECCION DE REGLAS */
@@ -22,9 +22,9 @@ USER_NAME               [a-zA-Z_][a-zA-Z0-9_]{2,}
 {NUEVA_LINEA}                    {/* Ignorar nueva linea */}
 {ESPACIO_BLANCO}                 {/* Ignorar los espacios vacios */}
 
-{USER_NAME}                      { check_username(yytext); }
-^[^\n]*$                         { printf("Nombre de usuario no valido: %s\n", yytext); }
-.                                {/* Ignorar el resto de coincidencias*/}
+
+{USER_NAME}                             { check_username(yytext); }
+^[^\n]*$                                { printf("Nombre de usuario no valido: %s\n", yytext); }
 
 
 %%

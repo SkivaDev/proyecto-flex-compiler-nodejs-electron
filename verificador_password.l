@@ -11,7 +11,7 @@ void check_password(const char *text);
 COMILLA_DOBLE           [\"]
 NUEVA_LINEA             [\n]
 ESPACIO_BLANCO          [" "]
-OCHO_A_MAS_CARACTERES   .{8,}
+OCHO_A_MAS_CARACTERES   ^.{8,}$
 
 
 /* SECCION DE REGLAS */
@@ -23,7 +23,6 @@ OCHO_A_MAS_CARACTERES   .{8,}
 
 {OCHO_A_MAS_CARACTERES}  { check_password(yytext); }
 ^[^\n]*$                 { printf("Contraseña no valida: %s\n", yytext); }
-.                        {/* Ignorar el resto de coincidencias*/}
 
 
 %%
