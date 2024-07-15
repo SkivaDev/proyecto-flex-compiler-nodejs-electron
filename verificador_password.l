@@ -18,6 +18,7 @@ OCHO_A_MAS_CARACTERES   ^.{8,}$
 %%
 {COMILLA_DOBLE}          {/* Ignorar comillas dobles */}
 {NUEVA_LINEA}            {/* Ignorar nueva línea */}
+
 {ESPACIO_BLANCO}         {/* Ignorar los espacios vacios */}
 
 
