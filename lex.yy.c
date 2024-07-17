@@ -282,12 +282,13 @@ static void yy_fatal_error YY_PROTO(( yyconst char msg[] ));
 	*yy_cp = '\0'; \
 	yy_c_buf_p = yy_cp;
 
-#define YY_NUM_RULES 6
-#define YY_END_OF_BUFFER 7
-static yyconst short int yy_accept[20] =
+#define YY_NUM_RULES 7
+#define YY_END_OF_BUFFER 8
+static yyconst short int yy_accept[26] =
     {   0,
-        0,    0,    7,    6,    2,    3,    1,    6,    2,    3,
-        1,    6,    0,    5,    0,    0,    4,    0,    0
+        0,    0,    8,    7,    2,    3,    1,    7,    2,    3,
+        1,    7,    7,    0,    6,    0,    5,    0,    0,    0,
+        4,    0,    4,    0,    0
     } ;
 
 static yyconst int yy_ec[256] =
@@ -304,7 +305,7 @@ static yyconst int yy_ec[256] =
         1,    1,    1,    1,    6,    1,    6,    6,    6,    6,
 
         6,    6,    6,    6,    6,    6,    6,    6,    6,    6,
-        6,    6,    6,    6,    6,    6,    6,    6,    6,    6,
+        6,    6,    6,    6,    7,    6,    6,    6,    6,    6,
         6,    6,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -322,37 +323,43 @@ static yyconst int yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static yyconst int yy_meta[7] =
+static yyconst int yy_meta[8] =
     {   0,
-        1,    1,    1,    1,    1,    1
+        1,    1,    1,    1,    1,    1,    1
     } ;
 
-static yyconst short int yy_base[21] =
+static yyconst short int yy_base[27] =
     {   0,
-        0,    6,   26,   27,   27,   27,   27,   23,   27,   20,
-       19,   11,   13,   27,   13,   18,   27,    0,   27,   13
+        0,    7,   33,   50,   50,   50,   50,   30,   50,   24,
+       23,   14,   20,   22,   50,   23,   50,   29,   36,   42,
+       50,    0,   50,    0,   50,   22
     } ;
 
-static yyconst short int yy_def[21] =
+static yyconst short int yy_def[27] =
     {   0,
-       19,   19,   19,   19,   19,   19,   19,   20,   19,   20,
-       20,   20,   20,   19,   12,   12,   19,   16,    0,   19
+       25,   25,   25,   25,   25,   25,   25,   26,   25,   26,
+       26,   25,   12,   26,   25,   12,   25,   16,   25,   19,
+       25,   19,   25,   20,    0,   25
     } ;
 
-static yyconst short int yy_nxt[34] =
+static yyconst short int yy_nxt[58] =
     {   0,
-        4,    5,    6,    7,    4,    4,    8,    9,   10,   11,
-        8,   12,   14,   13,   14,   15,   15,   16,   16,   17,
-       14,   14,   18,   18,   14,   19,    3,   19,   19,   19,
-       19,   19,   19
+        4,    5,    6,    7,    4,    4,    4,    8,    9,   10,
+       11,    8,   12,   13,   14,   15,   14,   14,   16,   16,
+       16,   17,   14,   15,   15,   15,   18,   19,   19,   19,
+       17,   15,   25,   25,   25,   20,   14,   21,   14,   14,
+       22,   22,   22,   23,   25,   25,   25,   25,   24,    3,
+       25,   25,   25,   25,   25,   25,   25
     } ;
 
-static yyconst short int yy_chk[34] =
+static yyconst short int yy_chk[58] =
     {   0,
-        1,    1,    1,    1,    1,    1,    2,    2,    2,    2,
-        2,    2,   12,   20,   13,   12,   12,   15,   15,   16,
-       11,   10,   16,   16,    8,    3,   19,   19,   19,   19,
-       19,   19,   19
+        1,    1,    1,    1,    1,    1,    1,    2,    2,    2,
+        2,    2,    2,    2,   12,   12,   12,   12,   12,   12,
+       12,   13,   26,   14,   11,   10,   13,   16,   16,   16,
+       18,    8,    3,    0,    0,   18,   19,   19,   19,   19,
+       19,   19,   19,   20,    0,    0,    0,    0,   20,   25,
+       25,   25,   25,   25,   25,   25,   25
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -376,7 +383,7 @@ char *yytext;
 void check_username(const char *text);
 /* SECCION DE TOKENS */
 /* SECCION DE REGLAS */
-#line 380 "lex.yy.c"
+#line 387 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -532,7 +539,7 @@ YY_DECL
 
 #line 20 "verificador_username.l"
 
-#line 536 "lex.yy.c"
+#line 543 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -584,13 +591,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 20 )
+				if ( yy_current_state >= 26 )
 					yy_c = yy_meta[(unsigned int) yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 27 );
+		while ( yy_base[yy_current_state] != 50 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -645,14 +652,22 @@ yy_c_buf_p = yy_cp -= 1;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
 #line 27 "verificador_username.l"
-{ printf("Nombre de usuario no valido: %s\n", yytext); }
+{ printf("Nombre de usuario no valido: Campo vacío\n"); }
 	YY_BREAK
 case 6:
+*yy_cp = yy_hold_char; /* undo effects of setting up yytext */
+yy_c_buf_p = yy_cp -= 1;
+YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 30 "verificador_username.l"
+#line 28 "verificador_username.l"
+{ printf("Nombre de usuario no valido: %s\n", yytext); }
+	YY_BREAK
+case 7:
+YY_RULE_SETUP
+#line 32 "verificador_username.l"
 ECHO;
 	YY_BREAK
-#line 656 "lex.yy.c"
+#line 671 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -945,7 +960,7 @@ static yy_state_type yy_get_previous_state()
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 20 )
+			if ( yy_current_state >= 26 )
 				yy_c = yy_meta[(unsigned int) yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
@@ -980,11 +995,11 @@ yy_state_type yy_current_state;
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 20 )
+		if ( yy_current_state >= 26 )
 			yy_c = yy_meta[(unsigned int) yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
-	yy_is_jam = (yy_current_state == 19);
+	yy_is_jam = (yy_current_state == 25);
 
 	return yy_is_jam ? 0 : yy_current_state;
 	}
@@ -1540,7 +1555,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 30 "verificador_username.l"
+#line 32 "verificador_username.l"
 
 
 int yywrap() {

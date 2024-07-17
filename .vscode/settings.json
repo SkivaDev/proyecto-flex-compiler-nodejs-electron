@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "separate flex: verificador_email, verificador_username, verificador_password",
         "project",
-        "email"
+        "email",
+        "username"
     ]
 }

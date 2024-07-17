@@ -42,13 +42,18 @@ ipcMain.on('verify-input', (event, { type, input }) => {
         command = `echo ${sanitizedInput} | ${isWindows ? '.\\verificador_password.exe' : './verificador_password'}`;
     }
 
+    // Imprimir el comando para verificar
+    console.log(`Ejecutando comando: ${command}`);
+
     exec(command, { shell: isWindows ? 'cmd.exe' : '/bin/bash' }, (error, stdout, stderr) => {
         if (error) {
             console.error(`Error: ${error.message}`);
+            event.reply('verification-result', `Error: ${error.message}`);
             return;
         }
         if (stderr) {
             console.error(`stderr: ${stderr}`);
+            event.reply('verification-result', `stderr: ${stderr}`);
             return;
         }
         event.reply('verification-result', stdout.trim()); // Trim para eliminar posibles nuevas líneas

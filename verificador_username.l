@@ -24,7 +24,9 @@ USER_NAME               ^[a-zA-Z_][a-zA-Z0-9_]{2,}$
 
 
 {USER_NAME}                             { check_username(yytext); }
+^[\s]*$                                 { printf("Nombre de usuario no valido: Campo vacío\n"); }
 ^[^\n]*$                                { printf("Nombre de usuario no valido: %s\n", yytext); }
+
 
 
 %%
