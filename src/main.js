@@ -34,18 +34,27 @@ ipcMain.on('verify-input', (event, { type, input }) => {
     const isWindows = os.platform() === 'win32';
     const sanitizedInput = input.replace(/"/g, '\\"'); // Escapar comillas dobles
 
+    console.log(input);
+    console.log(sanitizedInput);
+
+    console.log(input === sanitizedInput);
+
+    // console.log(object.is(input, sanitizedInput));
+
+    console.log(input.length);
+
     if (type === 'username') {
-        command = `echo ${sanitizedInput} | ${isWindows ? '.\\verificador_username.exe' : './verificador_username'}`;
+        command = `echo ${input} | ${isWindows ? '.\\verificador_username.exe' : './verificador_username'}`;
     } else if (type === 'email') {
-        command = `echo ${sanitizedInput} | ${isWindows ? '.\\verificador_email.exe' : './verificador_email'}`;
+        command = `echo ${input} | ${isWindows ? '.\\verificador_email.exe' : './verificador_email'}`;
     } else if (type === 'password') {
-        command = `echo ${sanitizedInput} | ${isWindows ? '.\\verificador_password.exe' : './verificador_password'}`;
+        command = `echo ${input} | ${isWindows ? '.\\verificador_password.exe' : './verificador_password'}`;
     }
 
     // Imprimir el comando para verificar
     console.log(`Ejecutando comando: ${command}`);
 
-    exec(command, { shell: isWindows ? 'cmd.exe' : '/bin/bash' }, (error, stdout, stderr) => {
+    exec(command, { shell: isWindows ? 'powershell.exe' : '/bin/bash' }, (error, stdout, stderr) => {
         if (error) {
             console.error(`Error: ${error.message}`);
             event.reply('verification-result', `Error: ${error.message}`);
@@ -56,6 +65,7 @@ ipcMain.on('verify-input', (event, { type, input }) => {
             event.reply('verification-result', `stderr: ${stderr}`);
             return;
         }
+        console.log(stdout);
         event.reply('verification-result', stdout.trim()); // Trim para eliminar posibles nuevas líneas
     });
 });
